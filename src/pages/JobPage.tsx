@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api, describeError } from '../api'
 import { JobActionButtons, useJobActions } from '../components/JobActions'
-import { ProgressBar } from '../components/ProgressBar'
+import { Percent, ProgressBar } from '../components/ProgressBar'
 import { StatusBadge } from '../components/StatusBadge'
 import { fmtDate, fmtEta, fmtInt } from '../format'
 import { useSession } from '../session'
@@ -56,6 +56,14 @@ export function JobPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session.isAdmin, id, status, attempt, cancelRequested, job === null])
 
+  useEffect(() => {
+    if (!job) return
+    document.title = active ? `${job.percent}% · ${job.fileName}` : `${job.status} · ${job.fileName}`
+    return () => {
+      document.title = 'Bulk Data Jobs'
+    }
+  }, [job, active])
+
   const { busy, run } = useJobActions(load)
 
   if (error && !job) {
@@ -95,13 +103,13 @@ export function JobPage() {
         {job.cancelRequested && active && <div className="alert alert-warn">Cancel requested. The worker stops after the current batch.</div>}
         {job.status === 'Completed' && <div className="alert alert-success">Completed: {fmtInt(job.successCount)} rows imported, {fmtInt(job.failureCount)} rejected.</div>}
 
-        <ProgressBar percent={job.percent} status={job.status} tall />
-        <div className="row space-between small muted">
-          <span>{job.percent}%</span>
-          <span>
-            {fmtInt(job.processedRows)} of {fmtInt(job.totalRows)} rows
+        <div className="progress-head">
+          <Percent percent={job.percent} status={job.status} big />
+          <span className="small muted">
+            {fmtInt(job.processedRows)} of {fmtInt(job.totalRows)} rows{active && ' · updates every 2s'}
           </span>
         </div>
+        <ProgressBar percent={job.percent} status={job.status} tall />
 
         <div className="stats">
           <Stat label="Total rows" value={fmtInt(job.totalRows)} />

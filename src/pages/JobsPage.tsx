@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { api, describeError } from '../api'
 import { JobActionButtons, useJobActions } from '../components/JobActions'
 import { Pager } from '../components/Pager'
-import { ProgressBar } from '../components/ProgressBar'
+import { Percent, ProgressBar } from '../components/ProgressBar'
 import { StatusBadge } from '../components/StatusBadge'
 import { useToast } from '../components/Toast'
 import { fmtDate, fmtInt } from '../format'
@@ -142,8 +142,10 @@ export function JobsPage() {
                       {job.cancelRequested && isActive(job.status) && <div className="text-amber small">cancel requested</div>}
                     </td>
                     <td className="col-progress">
-                      <ProgressBar percent={job.percent} status={job.status} />
-                      <div className="small muted">{job.percent}%</div>
+                      <div className="progress-cell">
+                        <ProgressBar percent={job.percent} status={job.status} />
+                        <Percent percent={job.percent} status={job.status} />
+                      </div>
                     </td>
                     <td className="num">
                       {fmtInt(job.processedRows)} / {fmtInt(job.totalRows)}

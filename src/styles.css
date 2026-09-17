@@ -151,7 +151,7 @@ input[type="file"] { font: inherit; }
 .badge-cancelled { background: var(--brown-bg); color: var(--brown); }
 
 .progress { height: 8px; background: var(--gray-bg); border-radius: 999px; overflow: hidden; min-width: 90px; }
-.progress-tall { height: 14px; margin-top: 12px; }
+.progress-tall { height: 14px; margin-top: 6px; }
 .progress-fill { height: 100%; border-radius: 999px; transition: width 0.4s ease; }
 .fill-uploaded { background: var(--gray); }
 .fill-queued { background: var(--blue); }
@@ -159,6 +159,18 @@ input[type="file"] { font: inherit; }
 .fill-completed { background: var(--green); }
 .fill-failed { background: var(--red); }
 .fill-cancelled { background: var(--brown); }
+
+.percent { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 4ch; text-align: right; }
+.percent-big { font-size: 32px; line-height: 1; min-width: 0; text-align: left; }
+.pct-uploaded { color: var(--gray); }
+.pct-queued { color: var(--blue); }
+.pct-running { color: var(--amber); }
+.pct-completed { color: var(--green); }
+.pct-failed { color: var(--red); }
+.pct-cancelled { color: var(--brown); }
+.progress-cell { display: flex; align-items: center; gap: 8px; }
+.progress-cell .progress { flex: 1; }
+.progress-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
 
 .live { color: var(--green); font-size: 12px; font-weight: 600; }
 .live::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: pulse 1.2s infinite; }
@@ -170,7 +182,7 @@ th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--lin
 th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); font-weight: 600; }
 tr:hover td { background: #fafbfc; }
 .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.col-progress { min-width: 110px; }
+.col-progress { min-width: 150px; }
 .file-link { font-weight: 500; overflow-wrap: anywhere; }
 .col-file { min-width: 160px; }
 
