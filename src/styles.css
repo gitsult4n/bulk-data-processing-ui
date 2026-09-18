@@ -97,7 +97,7 @@ h2 { font-size: 16px; }
   cursor: pointer;
   white-space: nowrap;
 }
-.btn:hover:not(:disabled) { background: var(--gray-bg); }
+.btn:hover:not(:disabled) { background: var(--gray-bg); text-decoration: none; }
 .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 .btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
 .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
@@ -150,7 +150,7 @@ input[type="file"] { font: inherit; }
 .badge-failed { background: var(--red-bg); color: var(--red); }
 .badge-cancelled { background: var(--brown-bg); color: var(--brown); }
 
-.progress { height: 8px; background: var(--gray-bg); border-radius: 999px; overflow: hidden; min-width: 90px; }
+.progress { height: 8px; background: var(--gray-bg); border-radius: 999px; overflow: hidden; min-width: 60px; }
 .progress-tall { height: 14px; margin-top: 6px; }
 .progress-fill { height: 100%; border-radius: 999px; transition: width 0.4s ease; }
 .fill-uploaded { background: var(--gray); }
@@ -181,8 +181,8 @@ table { width: 100%; border-collapse: collapse; }
 th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
 th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); font-weight: 600; }
 tr:hover td { background: #fafbfc; }
-.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.col-progress { min-width: 150px; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.col-progress { min-width: 120px; }
 .file-link { font-weight: 500; overflow-wrap: anywhere; }
 .col-file { min-width: 160px; }
 

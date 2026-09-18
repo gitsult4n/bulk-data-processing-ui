@@ -132,9 +132,9 @@ export function JobsPage() {
                 {data.items.map(job => (
                   <tr key={job.id}>
                     <td>
-                      <Link to={`/jobs/${job.id}`} className="file-link" title={job.id}>
+                      <span className="file-link" title={job.id}>
                         {job.fileName}
-                      </Link>
+                      </span>
                       {job.failureReason && <div className="text-red small">{job.failureReason}</div>}
                     </td>
                     <td>
@@ -154,9 +154,14 @@ export function JobsPage() {
                     <td className={job.failureCount > 0 ? 'num text-red' : 'num muted'}>{fmtInt(job.failureCount)}</td>
                     <td className="num">{isActive(job.status) || job.status === 'Completed' ? fmtInt(Math.round(job.rowsPerSecond)) : '-'}</td>
                     {session.isAdmin && <td>{job.ownerUsername ?? '-'}</td>}
-                    <td className="nowrap">{fmtDate(job.createdAt)}</td>
+                    <td>{fmtDate(job.createdAt)}</td>
                     <td>
-                      <JobActionButtons job={job} busy={busy} run={run} />
+                      <div className="row actions">
+                        <Link to={`/jobs/${job.id}`} className="btn">
+                          View job
+                        </Link>
+                        <JobActionButtons job={job} busy={busy} run={run} />
+                      </div>
                     </td>
                   </tr>
                 ))}
