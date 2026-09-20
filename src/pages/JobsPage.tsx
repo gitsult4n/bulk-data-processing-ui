@@ -61,14 +61,17 @@ export function JobsPage() {
     try {
       const job = await api.uploadJob(file, setProgress)
       toast.success(`Uploaded ${job.fileName} (${fmtInt(job.totalRows)} rows)`)
-      if (autoStart) {
-        await api.startJob(job.id)
-        toast.success(`Queued: ${job.fileName}`)
-      }
       setFile(null)
       if (fileInput.current) fileInput.current.value = ''
-      setPage(1)
-      await load(true)
+      try {
+        if (autoStart) {
+          await api.startJob(job.id)
+          toast.success(`Queued: ${job.fileName}`)
+        }
+      } finally {
+        setPage(1)
+        await load(true)
+      }
     } catch (err) {
       toast.error(describeError(err))
     } finally {

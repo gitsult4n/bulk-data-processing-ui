@@ -21,7 +21,7 @@ const STATUS_TEXT: Record<number, string> = {
   500: 'Server error.',
 }
 
-export function errorMessage(status: number, body: string): string {
+function errorMessage(status: number, body: string): string {
   const text = body.trim()
   const fallback = STATUS_TEXT[status] ?? `HTTP ${status}`
   if (!text || text.startsWith('<')) return fallback

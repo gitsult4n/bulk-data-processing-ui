@@ -76,7 +76,6 @@ h2 { font-size: 16px; }
 .file-title { word-break: break-all; }
 
 .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.space-between { justify-content: space-between; }
 .actions { gap: 6px; }
 
 .muted { color: var(--muted); }
