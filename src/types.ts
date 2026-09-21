@@ -55,7 +55,6 @@ export interface AuditLogResponse {
 
 export interface AuthResponse {
   token: string
-  expiresAt: string
 }
 
 export function isActive(status: JobStatus): boolean {
